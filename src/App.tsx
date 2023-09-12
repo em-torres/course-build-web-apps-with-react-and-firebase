@@ -4,6 +4,7 @@ import Title from "./components/Title.tsx";
 import Modal from "./components/Modal.tsx";
 
 function App() {
+    const [showModal, setShowModal] = useState(true)
     const [showEvents, setShowEvents] = useState(true)
     const [events, setEvents] = useState([
         { title: "Mario's Birthday Bash", id: 1 },
@@ -17,6 +18,9 @@ function App() {
                 return id !== event.id
             })
         })
+    }
+    const handleClose = () => {
+        setShowModal(false)
     }
 
     const subtitle: string = "All the latest events in Marioland"
@@ -47,10 +51,13 @@ function App() {
                         </React.Fragment>
                     ))
                 }
-                <Modal>
-                    <h2>10% Off Coupon Code!!</h2>
-                    <p>Use the code NINJA10 at the checkout.</p>
-                </Modal>
+                { showModal &&
+                    <Modal handleClose={ handleClose }>
+                        <h2>10% Off Coupon Code!!</h2>
+                        <p>Use the code NINJA10 at the checkout.</p>
+                    </Modal>
+                }
+
             </div>
         </>
     )
