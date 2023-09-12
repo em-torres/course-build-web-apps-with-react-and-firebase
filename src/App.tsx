@@ -4,7 +4,7 @@ import Title from "./components/Title.tsx";
 import Modal from "./components/Modal.tsx";
 
 function App() {
-    const [showModal, setShowModal] = useState(true)
+    const [showModal, setShowModal] = useState(false)
     const [showEvents, setShowEvents] = useState(true)
     const [events, setEvents] = useState([
         { title: "Mario's Birthday Bash", id: 1 },
@@ -57,6 +57,9 @@ function App() {
                         <p>Use the code NINJA10 at the checkout.</p>
                     </Modal>
                 }
+                <div>
+                    <button onClick={ () => setShowModal(true) }>Show Modal</button>
+                </div>
 
             </div>
         </>
