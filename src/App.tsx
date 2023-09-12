@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css'
 import Title from "./components/Title.tsx";
+import Modal from "./components/Modal.tsx";
 
 function App() {
     const [showEvents, setShowEvents] = useState(true)
@@ -46,6 +47,10 @@ function App() {
                         </React.Fragment>
                     ))
                 }
+                <Modal>
+                    <h2>10% Off Coupon Code!!</h2>
+                    <p>Use the code NINJA10 at the checkout.</p>
+                </Modal>
             </div>
         </>
     )
