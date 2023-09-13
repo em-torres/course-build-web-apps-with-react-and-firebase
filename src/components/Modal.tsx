@@ -1,7 +1,8 @@
 import ReactDOM from "react-dom";
 import './styles/Modal.css'
+import ModalProps from "./interfaces/IModalProps.tsx";
 
-export default function Modal( { children, handleClose, isSalesModal }: any) {
+export default function Modal( { children, handleClose, isSalesModal }: ModalProps) {
     return ReactDOM.createPortal( (
         <>
             <div className={ "modal-backdrop" }>

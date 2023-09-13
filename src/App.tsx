@@ -4,18 +4,19 @@ import Title from "./components/Title.tsx";
 import Modal from "./components/Modal.tsx";
 import EventList from "./components/EventList.tsx";
 
+
 function App() {
-    const [showModal, setShowModal] = useState(false)
-    const [showEvents, setShowEvents] = useState(true)
-    const [events, setEvents] = useState([
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [showEvents, setShowEvents] = useState<boolean>(true)
+    const [events, setEvents] = useState<any>([
         { title: "Mario's Birthday Bash", id: 1 },
         { title: "Bowser's Live Stream", id: 2 },
         { title: "Race on Moo Moo Farm", id: 3 }
     ])
 
     const handleClick = ( id: number ) => {
-        setEvents( (prevEvents) => {
-            return prevEvents.filter( (event) => {
+        setEvents( (prevEvents: any) => {
+            return prevEvents.filter( (event: any) => {
                 return id !== event.id
             })
         })
