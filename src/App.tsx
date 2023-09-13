@@ -3,6 +3,7 @@ import './App.css'
 import Title from "./components/Title.tsx";
 import Modal from "./components/Modal.tsx";
 import EventList from "./components/EventList.tsx";
+import NewEventForm from "./components/NewEventForm.tsx";
 
 
 function App() {
@@ -50,12 +51,11 @@ function App() {
                 }
                 { showModal &&
                     <Modal handleClose={ handleClose } isSalesModal={ true }>
-                        <h2>10% Off Coupon Code!!</h2>
-                        <p>Use the code NINJA10 at the checkout.</p>
+                        <NewEventForm />
                     </Modal>
                 }
                 <div>
-                    <button onClick={ () => setShowModal(true) }>Show Modal</button>
+                    <button onClick={ () => setShowModal(true) }>Add New Event</button>
                 </div>
 
             </div>
