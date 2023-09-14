@@ -1,5 +1,6 @@
 import styles from './styles/NewEventForm.module.css'
 import {useState} from "react";
+import EventProps from "./interfaces/IEventProps.tsx";
 
 export default function NewEventForm () {
     const [title, setTitle] = useState<string>('')
@@ -9,9 +10,20 @@ export default function NewEventForm () {
         setTitle('')
         setDate('')
     }
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
+
+        const event: EventProps = {
+            title: title,
+            date: date,
+            id: Math.floor(Math.random() * 10000)
+        }
+        console.log(event)
+        resetForm()
+    }
 
     return (
-        <form className={ styles.newEventForm }>
+        <form className={ styles.newEventForm } onSubmit={ handleSubmit }>
             <label>
                 <span>Event Title:</span>
                 <input type="text"
@@ -27,8 +39,6 @@ export default function NewEventForm () {
                 />
             </label>
             <button>Submit</button>
-            <p>Title - { title } | Date: { date }</p>
-            <p onClick={ resetForm }>Reset the form</p>
         </form>
     );
 }
