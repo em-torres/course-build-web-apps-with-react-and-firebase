@@ -57,7 +57,6 @@ function App() {
                         <NewEventForm addEvent={ addEvent } />
                     </Modal>
                 }
-
             </div>
         </>
     )
