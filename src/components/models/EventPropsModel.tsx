@@ -1,5 +1,6 @@
 export default interface EventProps {
     id: number,
     date: string,
-    title: string
+    location: string
+    title: string,
 }

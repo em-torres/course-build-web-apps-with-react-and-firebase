@@ -1,29 +1,26 @@
 import styles from './styles/NewEventForm.module.css'
-// import { useState } from "react";
+import { useState } from "react";
 import EventProps from "./models/EventPropsModel.tsx";
-// import INewEventProp from "./interfaces/INewEventProps.tsx";
-import {useRef} from "react";
 import INewEventProp from "./interfaces/INewEventProps.tsx";
 
 export default function NewEventForm ( { addEvent }: INewEventProp) {
-    const title: any = useRef()
-    const date: any = useRef()
-    // const [title, setTitle] = useState<string>('')
-    // const [date, setDate] = useState<string>('')
+    const [title, setTitle] = useState<string>('')
+    const [date, setDate] = useState<string>('')
+    const [location, setLocation] = useState<string>( 'manchester' )
 
     const resetForm = () => {
-        // setTitle('')
-        // setDate('')
-        title.current.value = ""
-        date.current.value = ""
+        setTitle('')
+        setDate('')
+        setLocation('manchester')
     }
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
         const event: EventProps = {
-            title: title.current.value,
-            date: date.current.value,
-            id: Math.floor(Math.random() * 10000)
+            title: title,
+            date: date,
+            id: Math.floor(Math.random() * 10000),
+            location: location
         }
         addEvent(event)
         resetForm()
@@ -35,15 +32,25 @@ export default function NewEventForm ( { addEvent }: INewEventProp) {
                 <span>Event Title:</span>
                 <input
                     type="text"
-                    ref={ title }
+                    value={ title }
+                    onChange={ (e) => { setTitle(e.target.value) } }
                 />
             </label>
             <label>
                 <span>Event Date:</span>
                 <input
                     type="date"
-                    ref={ date }
+                    value={ date }
+                    onChange={ (e) => { setDate(e.target.value) } }
                 />
+            </label>
+            <label>
+                <span>Event Location:</span>
+                <select onChange={ (e) => setLocation( e.target.value ) }>
+                    <option value="manchester">Manchester</option>
+                    <option value="london">London</option>
+                    <option value="cardiff">Cardiff</option>
+                </select>
             </label>
             <button>Submit</button>
         </form>

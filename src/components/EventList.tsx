@@ -8,9 +8,9 @@ export default function EventList({ events, handleClick }: IEventListProps) {
             {
                 events.map((event: EventProps, index: number) => (
                     <div key={ event.id } className={ styles.card }>
-                        <p>{ event.date }</p>
-                        <h2>{index}. {event.title}</h2>
-                        <button onClick={() => handleClick( event.id )}>Delete Event</button>
+                        <h2>{ index }. { event.title }</h2>
+                        <p>{ event.location.toUpperCase() } - { event.date }</p>
+                        <button onClick={ () => handleClick( event.id ) }>Delete Event</button>
                     </div>
                 ))
             }
