@@ -4,26 +4,26 @@ import Title from "./components/Title.tsx";
 import Modal from "./components/Modal.tsx";
 import EventList from "./components/EventList.tsx";
 import NewEventForm from "./components/NewEventForm.tsx";
+import EventProps from "./components/models/EventPropsModel.tsx";
 
 
 function App() {
     const [showModal, setShowModal] = useState<boolean>(false)
     const [showEvents, setShowEvents] = useState<boolean>(true)
-    const [events, setEvents] = useState<any>([
-        { title: "Mario's Birthday Bash", id: 1 },
-        { title: "Bowser's Live Stream", id: 2 },
-        { title: "Race on Moo Moo Farm", id: 3 }
-    ])
+    const [events, setEvents] = useState<EventProps[]>([])
 
+    const addEvent = (event: EventProps) => {
+        setEvents((prevEvents: EventProps[]) => {
+            return [...prevEvents, event]
+        })
+        setShowModal(false)
+    }
     const handleClick = ( id: number ) => {
         setEvents( (prevEvents: any) => {
             return prevEvents.filter( (event: any) => {
                 return id !== event.id
             })
         })
-    }
-    const handleClose = () => {
-        setShowModal(false)
     }
 
     const subtitle: string = "All the latest events in Marioland"
@@ -46,17 +46,17 @@ function App() {
                             <button onClick={ () => setShowEvents(true) }>Show Events</button>
                         </div>)
                 }
+                <div>
+                    <button onClick={ () => setShowModal(true) }>Add New Event</button>
+                </div>
                 {
                     showEvents && <EventList events={ events } handleClick={ handleClick } />
                 }
                 { showModal &&
-                    <Modal handleClose={ handleClose } isSalesModal={ true }>
-                        <NewEventForm />
+                    <Modal isSalesModal={ true }>
+                        <NewEventForm addEvent={ addEvent } />
                     </Modal>
                 }
-                <div>
-                    <button onClick={ () => setShowModal(true) }>Add New Event</button>
-                </div>
 
             </div>
         </>

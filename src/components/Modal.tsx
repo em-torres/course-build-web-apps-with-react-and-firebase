@@ -1,8 +1,8 @@
 import ReactDOM from "react-dom";
 import './styles/Modal.css'
-import ModalProps from "./interfaces/IModalProps.tsx";
+import IModalProps from "./interfaces/IModalProps.tsx";
 
-export default function Modal( { children, handleClose, isSalesModal }: ModalProps) {
+export default function Modal( { children, isSalesModal }: IModalProps) {
     return ReactDOM.createPortal( (
         <>
             <div className={ "modal-backdrop" }>
@@ -12,12 +12,6 @@ export default function Modal( { children, handleClose, isSalesModal }: ModalPro
                     textAlign: "center"
                 } }>
                     { children }
-                    <button
-                        onClick={ handleClose }
-                        className={ isSalesModal ? "sales-btn" : "" }
-                    >
-                        Close
-                    </button>
                 </div>
             </div>
         </>
