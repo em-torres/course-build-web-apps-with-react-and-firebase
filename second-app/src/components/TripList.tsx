@@ -1,17 +1,29 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import './styles/TripList.css'
+import Trip from "./models/TripsModel.tsx";
 
 export default function TripList() {
-    const [trips, setTrips] = useState<object[]>([])
+    const [trips, setTrips] = useState<Trip[]>([])
+
+    useEffect(() => {
+        fetch('http://localhost:3000/trips')
+            .then(response => response.json())
+            .then(json => setTrips(json))
+    }, []);
 
     console.log(trips)
 
-    fetch('http://localhost:3000/trips')
-        .then(response => response.json())
-        .then(json => setTrips(json))
-
     return (
-        <div>
+        <div className={ "trip-list" }>
             <h2>Triplist</h2>
+            <ul>
+                { trips.map(trip => (
+                    <li key={ trip.id }>
+                        <h3>{ trip.title }</h3>
+                        <p>{ trip.price }</p>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
